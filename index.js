@@ -4,27 +4,30 @@ import { Text, View } from 'react-native';
 
 const emptyFunc = ()=>{};
 
-export default ViewMoreText = React.createClass({
-  propTypes: {
-    renderViewMore: PropTypes.func,
-    renderViewLess: PropTypes.func,
-    afterCollapse: PropTypes.func,
-    afterExpand: PropTypes.func,
-    numberOfLines: PropTypes.number.isRequired
-  },
+ViewMoreText.propTypes = {
+  renderViewMore: PropTypes.func,
+  renderViewLess: PropTypes.func,
+  afterCollapse: PropTypes.func,
+  afterExpand: PropTypes.func,
+  numberOfLines: PropTypes.number.isRequired
+};
+
+export default class ViewMoreText extends React.component {
+
+  constructor() {
+    super();
+    this.resetData();
+    this.state = {
+      numberOfLines: null,
+      opacity: 0
+    }
+  }
+  
   isTruncated: false,
   originalHeight: 0,
   shouldShowMore: false, 
   contentHeight: 0,
   isInit: false,
-
-  getInitialState(){
-    this.resetData();
-    return {
-      numberOfLines: null,
-      opacity: 0
-    }
-  },
 
   componentDidUpdate(){
     if(this.state.numberOfLines === null){
@@ -141,5 +144,5 @@ export default ViewMoreText = React.createClass({
     )
   }
 
-})
+}
 
