@@ -1,27 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Text, View } from 'react-native';
 
 const emptyFunc = ()=>{};
 
-ViewMoreText.propTypes = {
-  renderViewMore: PropTypes.func,
-  renderViewLess: PropTypes.func,
-  afterCollapse: PropTypes.func,
-  afterExpand: PropTypes.func,
-  numberOfLines: PropTypes.number.isRequired
-};
-
-export default class ViewMoreText extends React.component {
+export default class ViewMoreText extends Component {
 
   constructor() {
     super();
     this.resetData();
-    isTruncated: false,
-    originalHeight: 0,
-    shouldShowMore: false, 
-    contentHeight: 0,
-    isInit: false,
+    isTruncated: false;
+    originalHeight: 0;
+    shouldShowMore: false; 
+    contentHeight: 0;
+    isInit: false;
     this.state = {
       numberOfLines: null,
       opacity: 0
@@ -34,14 +26,14 @@ export default class ViewMoreText extends React.component {
     } else {
       (this.props.afterCollapse || emptyFunc)();
     }
-  },
+  }
 
   resetData(){
     this.isTruncated = false;
     this.originalHeight = 0;
     this.shouldShowMore = false;
     this.isInit = false;
-  },
+  }
 
   componentWillReceiveProps(){
     this.resetData();
@@ -50,7 +42,7 @@ export default class ViewMoreText extends React.component {
       numberOfLines: null,
       opacity: 0
     })
-  },
+  }
 
   onLayout(event){
     const {x, y, width, height} = event.nativeEvent.layout;
@@ -64,7 +56,7 @@ export default class ViewMoreText extends React.component {
         opacity: 1
       })
     }
-  },
+  }
   
   setOriginalHeight(height){
     if(this.originalHeight === 0){
@@ -74,25 +66,25 @@ export default class ViewMoreText extends React.component {
         numberOfLines: this.props.numberOfLines
       })
     }
-  },
+  }
 
   checkTextTruncated(height){
     if(height < this.originalHeight){
       this.shouldShowMore = true;
     }
-  },
+  }
 
   onPressMore(){
     this.setState({
       numberOfLines: null
     });
-  },
+  }
 
   onPressLess(){
     this.setState({
       numberOfLines: this.props.numberOfLines
     })
-  },
+  }
 
   renderViewMore(){
     return (
@@ -100,7 +92,7 @@ export default class ViewMoreText extends React.component {
         View More
       </Text>
     )
-  },
+  }
   
   renderViewLess(){
     return (
@@ -108,7 +100,7 @@ export default class ViewMoreText extends React.component {
         View Less
       </Text>
     )
-  },
+  }
 
   renderFooter(){
     let {
@@ -122,7 +114,7 @@ export default class ViewMoreText extends React.component {
         return (this.props.renderViewLess || this.renderViewLess)(this.onPressLess);
       }
     }
-  },
+  }
 
   render(){
 
@@ -144,4 +136,13 @@ export default class ViewMoreText extends React.component {
   }
 
 }
+
+ViewMoreText.propTypes = {
+  renderViewMore: PropTypes.func,
+  renderViewLess: PropTypes.func,
+  afterCollapse: PropTypes.func,
+  afterExpand: PropTypes.func,
+  numberOfLines: PropTypes.number.isRequired
+};
+
 
