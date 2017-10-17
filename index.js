@@ -17,17 +17,16 @@ export default class ViewMoreText extends React.component {
   constructor() {
     super();
     this.resetData();
+    isTruncated: false,
+    originalHeight: 0,
+    shouldShowMore: false, 
+    contentHeight: 0,
+    isInit: false,
     this.state = {
       numberOfLines: null,
       opacity: 0
     }
   }
-  
-  isTruncated: false,
-  originalHeight: 0,
-  shouldShowMore: false, 
-  contentHeight: 0,
-  isInit: false,
 
   componentDidUpdate(){
     if(this.state.numberOfLines === null){
