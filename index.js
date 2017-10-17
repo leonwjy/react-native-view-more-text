@@ -1,15 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Text, View } from 'react-native';
 
 const emptyFunc = ()=>{};
 
 export default ViewMoreText = React.createClass({
   propTypes: {
-    renderViewMore: React.PropTypes.func,
-    renderViewLess: React.PropTypes.func,
-    afterCollapse: React.PropTypes.func,
-    afterExpand: React.PropTypes.func,
-    numberOfLines: React.PropTypes.number.isRequired
+    renderViewMore: PropTypes.func,
+    renderViewLess: PropTypes.func,
+    afterCollapse: PropTypes.func,
+    afterExpand: PropTypes.func,
+    numberOfLines: PropTypes.number.isRequired
   },
   isTruncated: false,
   originalHeight: 0,
